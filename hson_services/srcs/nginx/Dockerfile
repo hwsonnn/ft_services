@@ -20,8 +20,9 @@ RUN mv localhost.dev.crt etc/ssl/certs/
 RUN mv localhost.dev.key etc/ssl/private/
 RUN chmod 600 etc/ssl/certs/localhost.dev.crt etc/ssl/private/localhost.dev.key
 
+# index.html 역할은?
 COPY /srcs/nginx.conf /etc/nginx/nginx.conf
-COPY /srcs/index.html /www/index.html		#얘 역할은?
+COPY /srcs/index.html /www/index.html
 COPY /srcs/telegraf.conf /etc/telegraf
 COPY /srcs/run.sh /
 
