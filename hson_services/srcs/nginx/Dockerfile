@@ -10,7 +10,7 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linu
 	rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
 	mkdir -p /etc/telegraf
 
-RUN adduser -D -g 'www' www
+RUN adduser -D -g 'www' www				#권한 설정?
 RUN mkdir /www
 RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /www
@@ -21,7 +21,7 @@ RUN mv localhost.dev.key etc/ssl/private/
 RUN chmod 600 etc/ssl/certs/localhost.dev.crt etc/ssl/private/localhost.dev.key
 
 COPY /srcs/nginx.conf /etc/nginx/nginx.conf
-COPY /srcs/index.html /www/index.html
+COPY /srcs/index.html /www/index.html		#얘 역할은?
 COPY /srcs/telegraf.conf /etc/telegraf
 COPY /srcs/run.sh /
 

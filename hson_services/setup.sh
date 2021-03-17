@@ -2,16 +2,18 @@ BLUE_GREEN="\033[36m"
 echo -n "${BLUE_GREEN}"
 
 export MINIKUBE_HOME=~/goinfre # @개포동(저장공간 확보!)
+					#맥북으로 하면 어떻게 됨?
 
 minikube delete --all
 
 # 클러스터 생성
-minikube start --driver=virtualbox --extra-config=apiserver.service-node-port-range=0-32767
+minikube start --driver=virtualbox
 
 # Metallb 활성화
 minikube addons enable metallb
 
 # 클러스터 안에서 이미지를 빌드하도록 환경 설정
+# -> 내 로컬 도커를 미니큐브 속 도커로 pointing
 eval $(minikube docker-env)
 
 minikube dashboard &
@@ -22,12 +24,14 @@ echo "nginx..."
 docker build -t nginx_service ./srcs/nginx > /dev/null
 echo "mySQL..."
 docker build -t mysql_service ./srcs/mysql > /dev/null
+# 실행시킬 때 ./setup.sh: line 25: sql: command not found 이런 에러 뜨던데
 echo "phpMyAdmin..."
 docker build -t phpmyadmin_service ./srcs/phpmyadmin > /dev/null
 echo "wordpress..."
 docker build -t wordpress_service ./srcs/wordpress > /dev/null
 echo "influxdb..."
 docker build -t influxdb_service ./srcs/influxdb > /dev/null
+# ./setup.sh: line 32: v/null: No such file or directory 라고 뜸
 echo "grafana..."
 docker build -t grafana_service ./srcs/grafana > /dev/null
 echo "ftps..."
@@ -44,4 +48,5 @@ kubectl apply -f ./srcs/yaml/grafana.yml
 kubectl apply -f ./srcs/yaml/ftps.yml
 
 # 로드밸런서에 external IP 부여
-kubectl apply -f ./srcs/ConfigMap.yml
+kubectl apply -f ./srcs/ConfigMap.yml	
+#metallb는 처음에 설치하는데 적용은 왜 마지막에?
