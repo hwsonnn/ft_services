@@ -1,7 +1,7 @@
 BLUE_GREEN="\033[36m"
 echo -n "${BLUE_GREEN}"
 
-export MINIKUBE_HOME=~/goinfre # @개포동(저장공간 확보!)
+#export MINIKUBE_HOME=~/goinfre #개포동(저장공간 확보!)
 
 minikube delete --all
 
