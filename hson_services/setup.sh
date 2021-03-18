@@ -6,7 +6,7 @@ export MINIKUBE_HOME=~/goinfre # @개포동(저장공간 확보!)
 minikube delete --all
 
 # 클러스터 생성
-minikube start --driver=virtualbox --extra-config=apiserver.service-node-port-range=0-32767
+minikube start --driver=virtualbox #--extra-config=apiserver.service-node-port-range=0-32767
 
 # Metallb 활성화
 minikube addons enable metallb

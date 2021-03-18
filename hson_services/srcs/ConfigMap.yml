@@ -11,4 +11,4 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.99.30-192.168.99.30 #ip RANGE
+      - 192.168.99.30-192.168.99.30 #ip RANGE #이거 결정!

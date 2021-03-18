@@ -47,7 +47,8 @@ docker rmi phpmyadmin_service
 docker build ./srcs/phpmyadmin/ -t phpmyadmin_service
 kubectl apply -f ./srcs/yaml/phpMyAdmin.yml
 
+#ftp 파일 전송 보여주기
 curl ftp://192.168.99.30:21 --ssl -k --user hson -T reset.sh
 
-k exec -it pod/ftps-deployment-8585d96555-5kz79 -- sh 
-ftps/ukim
+k exec -it ftps-deployment-8585d96555-5kz79 -- sh 
+ftps/hson

@@ -7,24 +7,17 @@
 openrc
 # rc-service 명령을 실행하기 위해 openrc를 설치하고 실행해줘야 함
 touch /run/openrc/softlevel
-# 위 명령을 실행해 줘야 rc-service mariadb " "가 실행이 된다.
+# 위 파일을 만들어 줘야 rc-service mariadb " "가 실행이 된다.
 /usr/bin/mysql_install_db
-
 # rc-service mariadb setup
 rc-service mariadb start
 
-# rc-service mariadb start
-
-# echo "FLUSH PRIVILEGES;" | mysql -u root
-
 echo "CREATE DATABASE wordpress;" | mysql -u root
-
-echo "CREATE USER 'hson'@'%' identified by '0000';" | mysql -u root
-
+echo "CREATE USER 'hson'@'%' IDENTIFIED BY '0000';" | mysql -u root
 echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'hson'@'%';" | mysql -u root
-
 echo "FLUSH PRIVILEGES;" | mysql -u root
 
 mysql -u root wordpress < wordpress.sql
-# mariadb daemon 실행
+
+# mariadb daemon 실행		#이게 무슨말???? => 백그라운드에서 실행되는게 daemon
 telegraf & /usr/bin/mysqld_safe --datadir=/var/lib/mysql
