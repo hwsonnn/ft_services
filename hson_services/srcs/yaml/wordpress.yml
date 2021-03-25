@@ -8,11 +8,11 @@ metadata:
     app: wordpress
 spec:
   type: LoadBalancer
-  selector:
-    app: wordpress
   ports:
     - port: 5050
       nodePort: 5050
+  selector:
+    app: wordpress
 
 ---
 apiVersion: apps/v1

@@ -2,6 +2,7 @@ FROM alpine:3.12
 
 RUN apk update
 RUN apk add mariadb mariadb-client openrc
+#얘는 뭐하는 애? => 꺼져도 데이터 유지
 RUN apk add supervisor
 RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz && \
 	tar -C . -xzf telegraf-1.14.0-static_linux_amd64.tar.gz && \
@@ -9,8 +10,9 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linu
 	cp telegraf/telegraf /usr/bin/ && \
 	rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
 	mkdir -p /etc/telegraf
+
 # 생성된 컨테이너 안에서 지속적으로 실행해줘야하는 애들을 도커파일에 적으면 안되는 것 같다
-# 7~17번 줄을 도커파일에 적었을 때와, setting.sh파일에 적어서 실행했을 때의 결과가 다르다.
+# 아래 명령을 도커파일에 적었을 때와, setup.sh파일에 적어서 실행했을 때의 결과가 다르다.
 # https://wiki.alpinelinux.org/wiki/Mysql 알파인 위키 참고
 # RUN /usr/bin/mysql_install_db
 # RUN /etc/init.d/mariadb setup
@@ -23,12 +25,11 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linu
 # RUN rc-service mariadb setup
 # # RUN rc-service mariadb start
 
-# COPY /srcs/run.sh .
-COPY /srcs/run.sh .
+COPY /srcs/run.sh /
+COPY /srcs/setup.sh /
 COPY /srcs/my.cnf /etc/mysql/my.cnf
-COPY /srcs/setup.sh .
-COPY /srcs/supervisord.conf  /etc/supervisord.conf
-COPY /srcs/wordpress.sql .
+COPY /srcs/supervisord.conf /etc/supervisord.conf
+COPY /srcs/wordpress.sql /
 COPY /srcs/telegraf.conf /etc/telegraf
 
 
@@ -38,7 +39,5 @@ VOLUME ["/sys/fs/cgroup"]
 
 # EXPOSE 3306
 
-CMD ["sh", "run.sh"]
-#supervisor daemon을 사용하면 mysql pod restart가 거짓말처럼 사라진다.. 왜지?ㅠㅠ
-#conf파일의 autorestart가 자동으로 재시작시켜주기 때문인가?
-#프로세스와 pod가 어떤 차이가 있는지 알아봐야겠다.
+CMD bash run.sh
+#setup.sh 는 언제 실행시키는거?? => supervisord 에서

@@ -1,28 +1,26 @@
-
-
 apiVersion: v1
 kind: Service
-metadata: 
+metadata:
+  name: grafana-service
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
   labels: 
     app: grafana
-  name: grafana-service
-spec: 
+spec:
+  type: LoadBalancer
   ports: 
-    -
-      port: 3000
-      nodePort: 3000
+    - port: 3000
+      nodePort: 3000   #얘는 노드포트????
   selector: 
     app: grafana
-  type: LoadBalancer
+
 ---
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
+metadata:
+  name: grafana-deployment
   labels: 
     app: grafana
-  name: grafana-deployment
 spec: 
   replicas: 1
   selector: 
@@ -34,9 +32,8 @@ spec:
         app: grafana
     spec: 
       containers: 
-        - 
+        - name: grafana
           image: grafana_service
-          name: grafana
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
