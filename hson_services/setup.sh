@@ -6,7 +6,7 @@ echo -n "${BLUE_GREEN}"
 minikube delete --all
 
 # 클러스터 생성
-minikube start --driver=virtualbox #--extra-config=apiserver.service-node-port-range=0-32767
+minikube start --driver=virtualbox 
 
 # Metallb 활성화
 minikube addons enable metallb
