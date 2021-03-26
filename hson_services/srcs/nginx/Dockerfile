@@ -10,7 +10,7 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linu
 	rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
 	mkdir -p /etc/telegraf
 
-#무슨 권한? nginx만?
+#권한 설정
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN chown -R www:www /var/lib/nginx
@@ -22,7 +22,7 @@ RUN mv localhost.dev.key etc/ssl/private/
 RUN chmod 600 etc/ssl/certs/localhost.dev.crt etc/ssl/private/localhost.dev.key
 
 #index.html 역할은? => 그 페이지
-#이거 왜 /srcs 절대경로야??? 상대경로가 아니라??? => dockerfile 기준
+#절대경로 /srcs => dockerfile 기준
 COPY /srcs/nginx.conf /etc/nginx/nginx.conf
 COPY /srcs/index.html /www/index.html
 COPY /srcs/telegraf.conf /etc/telegraf

@@ -41,3 +41,7 @@ VOLUME ["/sys/fs/cgroup"]
 
 CMD bash run.sh
 #setup.sh 는 언제 실행시키는거?? => supervisord 에서
+
+#supervisor daemon을 사용하면 mysql pod restart가 거짓말처럼 사라진다.. 왜지?ㅠㅠ
+#conf파일의 autorestart가 자동으로 재시작시켜주기 때문인가?
+#프로세스와 pod가 어떤 차이가 있는지 알아봐야겠다.
