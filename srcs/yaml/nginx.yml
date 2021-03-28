@@ -24,7 +24,7 @@ kind: Deployment
 metadata:
   name: nginx-deployment
   labels:
-    app: nginx      #라벨? 얘는 어떤거 말하는것 ? 이 디플로이먼트 이름 ?? => 색인
+    app: nginx      #라벨 => 색인
 spec:
   replicas: 1
   selector:         #selector 라는게 ??
@@ -37,7 +37,7 @@ spec:
     spec:             #얘가 파드 말하는거 맞음? => ㅇㅇ
       containers:
         - name: nginx   #저 위에 app: nginx 라벨이랑 다른거??
-          image: nginx_service  #도커빌드한거 !
+          image: nginx-image  #도커빌드한거 !
           imagePullPolicy: Never  #?? => github 금지한거
           ports:
             - containerPort: 80

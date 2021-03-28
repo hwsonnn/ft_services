@@ -1,7 +1,7 @@
 BLUE_GREEN="\033[36m"
-echo -n "${BLUE_GREEN}"
+echo "${BLUE_GREEN}"
 
-#export MINIKUBE_HOME=~/goinfre #개포동(저장공간 확보!)
+# export MINIKUBE_HOME=~/goinfre #개포동(저장공간 확보!)
 
 minikube delete --all
 
@@ -20,19 +20,19 @@ minikube dashboard &
 # 이미지 빌드
 echo "이미지 빌드를 시작합니다..."
 echo "nginx..."
-docker build -t nginx_service ./srcs/nginx > /dev/null
+docker build -qt nginx-image ./srcs/nginx
 echo "mySQL..."
-docker build -t mysql_service ./srcs/mysql > /dev/null
+docker build -qt mysql-image ./srcs/mysql
 echo "phpMyAdmin..."
-docker build -t phpmyadmin_service ./srcs/phpmyadmin > /dev/null
+docker build -qt phpmyadmin-image ./srcs/phpmyadmin
 echo "wordpress..."
-docker build -t wordpress_service ./srcs/wordpress > /dev/null
+docker build -qt wordpress-image ./srcs/wordpress
 echo "influxdb..."
-docker build -t influxdb_service ./srcs/influxdb > /dev/null
+docker build -qt influxdb-image ./srcs/influxdb
 echo "grafana..."
-docker build -t grafana_service ./srcs/grafana > /dev/null
+docker build -qt grafana-image ./srcs/grafana
 echo "ftps..."
-docker build -t ftps_service ./srcs/ftps > /dev/null
+docker build -qt ftps-image ./srcs/ftps
 
 # 오브젝트 생성
 echo "오브젝트를 생성합니다..."

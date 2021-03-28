@@ -48,7 +48,7 @@ spec: # Set Deployment
     spec: # CONTAINER!!!
       containers: # container set
         - name: ftps # container's name
-          image: ftps_service # Select docker image
+          image: ftps-image # Select docker image
           imagePullPolicy: Never # Using local image.
           ports:
             - containerPort: 20

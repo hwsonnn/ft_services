@@ -1,50 +1,50 @@
 #ftp
 kubectl delete -f ./srcs/yaml/ftps.yml
 eval $(minikube docker-env)
-docker rmi ftps_service
+docker rmi ftps-image
 
-docker build ./srcs/ftps/ -t ftps_service
+docker build ./srcs/ftps/ -t ftps-image
 kubectl apply -f ./srcs/yaml/ftps.yml
 
 #wordpress
 kubectl delete -f ./srcs/yaml/wordpress.yml
 eval $(minikube docker-env)
-docker rmi wordpress_service
+docker rmi wordpress-image
 
-docker build ./srcs/wordpress/ -t wordpress_service
+docker build ./srcs/wordpress/ -t wordpress-image
 kubectl apply -f ./srcs/yaml/wordpress.yml
 
 #grafana
 kubectl delete -f ./srcs/yaml/grafana.yml
 eval $(minikube docker-env)
-docker rmi grafana_service
+docker rmi grafana-image
 
-docker build ./srcs/grafana/ -t grafana_service
+docker build ./srcs/grafana/ -t grafana-image
 kubectl apply -f ./srcs/yaml/grafana.yml
 
 #influxdb
 kubectl delete -f ./srcs/yaml/influxdb.yml
 eval $(minikube docker-env)
-docker rmi influxdb_services
+docker rmi influxdb-image
 
-docker build ./srcs/influxdb/ -t influxdb_service
+docker build ./srcs/influxdb/ -t influxdb-image
 kubectl apply -f ./srcs/yaml/influxdb.yml
 
 #mysql
 kubectl delete -f ./srcs/yaml/mySql.yml
 eval $(minikube docker-env)
-docker rmi mysql_service
+docker rmi mysql-image
 
-docker build ./srcs/mysql/ -t mysql_service
+docker build ./srcs/mysql/ -t mysql-image
 kubectl apply -f ./srcs/yaml/mySql.yml
 #k exec influxdb-deployment -- pkill influxd
 
 #phpmyadmin
 kubectl delete -f ./srcs/yaml/phpMyAdmin.yml
 eval $(minikube docker-env)
-docker rmi phpmyadmin_service
+docker rmi phpmyadmin-image
 
-docker build ./srcs/phpmyadmin/ -t phpmyadmin_service
+docker build ./srcs/phpmyadmin/ -t phpmyadmin-image
 kubectl apply -f ./srcs/yaml/phpMyAdmin.yml
 
 #ftp 파일 전송 보여주기
