@@ -6,6 +6,15 @@ docker rmi ftps-image
 docker build ./srcs/ftps/ -t ftps-image
 kubectl apply -f ./srcs/yaml/ftps.yml
 
+#nginx
+kubectl delete -f ./srcs/yaml/nginx.yml
+eval $(minikube docker-env)
+docker rmi nginx-image
+
+docker build ./srcs/nginx/ -t nginx-image
+kubectl apply -f ./srcs/yaml/nginx.yml
+
+
 #wordpress
 kubectl delete -f ./srcs/yaml/wordpress.yml
 eval $(minikube docker-env)

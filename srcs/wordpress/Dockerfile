@@ -17,4 +17,4 @@ COPY /srcs/telegraf.conf /etc/telegraf/
 
 RUN mkdir /run/nginx
 
-CMD bash run.sh
+CMD ["sh", "run.sh"]

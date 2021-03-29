@@ -21,4 +21,4 @@ VOLUME ["/sys/fs/cgroup"]
 
 EXPOSE 3306
 
-CMD bash run.sh
+CMD ["sh", "run.sh"]

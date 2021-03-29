@@ -28,4 +28,4 @@ COPY /srcs/telegraf.conf /etc/telegraf
 
 EXPOSE 80 443
 
-CMD bash run.sh
+CMD ["sh", "run.sh"]
