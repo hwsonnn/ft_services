@@ -1,7 +1,7 @@
 FROM alpine:3.12
 
 RUN apk update
-RUN	apk add --no-cache nginx
+RUN apk add --no-cache nginx
 RUN apk add openssl
 RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz && \
 	tar -C . -xzf telegraf-1.14.0-static_linux_amd64.tar.gz && \
@@ -28,4 +28,4 @@ COPY /srcs/telegraf.conf /etc/telegraf
 
 EXPOSE 80 443
 
-CMD bash run.sh
+CMD ["sh", "run.sh"]
