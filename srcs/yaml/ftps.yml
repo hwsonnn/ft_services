@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ftps-service # Service's name is ftps
+  name: ftps-service
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
   labels:
-    app: ftps # Service's app label is ftps
+    app: ftps
 spec:
   type: LoadBalancer
   ports:
-    - port: 20          #20은 뭐??
+    - port: 20
       name: ftp-data
       targetPort: 20
       protocol: TCP
@@ -17,7 +17,7 @@ spec:
       name: ftp
       targetPort: 21
       protocol: TCP
-    - port: 31111       #???????
+    - port: 31111
       name: passive0
       targetPort: 31111
       protocol: TCP
@@ -41,11 +41,11 @@ spec: # Set Deployment
   selector:
     matchLabels: # Control pods which have this label
       app: ftps
-  template: # POD!!!
+  template: # POD!!
     metadata:
       labels:
         app: ftps # Pod's app label is ftps
-    spec: # CONTAINER!!!
+    spec: # CONTAINER!!
       containers: # container set
         - name: ftps # container's name
           image: ftps-image # Select docker image

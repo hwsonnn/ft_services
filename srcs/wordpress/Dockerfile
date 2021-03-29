@@ -1,21 +1,20 @@
-FROM    alpine:3.12
+FROM alpine:3.12
 
-RUN     apk update
-RUN     apk add nginx
-RUN     apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
-RUN     wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz && \
-        tar -C . -xzf telegraf-1.14.0-static_linux_amd64.tar.gz && \
-        chmod +x telegraf/telegraf && \
-        cp telegraf/telegraf /usr/bin/ && \
-        rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
-        mkdir -p /etc/telegraf
+RUN apk update && \
+	apk add nginx \
+	php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
+RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz && \
+    tar -C . -xzf telegraf-1.14.0-static_linux_amd64.tar.gz && \
+    chmod +x telegraf/telegraf && \
+    cp telegraf/telegraf /usr/bin/ && \
+    rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
+    mkdir -p /etc/telegraf
 
-COPY    /srcs/run.sh /
-COPY    /srcs/nginx.conf /etc/nginx/nginx.conf
-COPY    /srcs/wp-config.php /
-COPY    /srcs/telegraf.conf /etc/telegraf/
-#supervisord.conf 는???????? 깔지도 않았음 심지어 => 지움
+COPY /srcs/run.sh /
+COPY /srcs/nginx.conf /etc/nginx/nginx.conf
+COPY /srcs/wp-config.php /
+COPY /srcs/telegraf.conf /etc/telegraf/
 
-RUN     mkdir /run/nginx
+RUN mkdir /run/nginx
 
-CMD     bash run.sh
+CMD bash run.sh

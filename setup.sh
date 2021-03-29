@@ -6,14 +6,15 @@ echo "${BLUE_GREEN}"
 minikube delete --all
 
 # 클러스터 생성
-minikube start --driver=virtualbox 
+minikube start -p hson-sub --driver=virtualbox --extra-config=apiserver.service-node-port-range=0-32767
+minikube profile hson-sub
 
 # Metallb 활성화
 minikube addons enable metallb
 
 # 클러스터 안에서 이미지를 빌드하도록 환경 설정
 # -> 내 로컬 도커를 미니큐브 속 도커로 pointing
-eval $(minikube docker-env)
+eval $(minikube -p hson-sub docker-env)
 
 minikube dashboard &
 

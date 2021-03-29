@@ -1,7 +1,7 @@
 FROM alpine:3.12
 
-RUN apk update 
-RUN apk add --no-cache nginx
+RUN apk update
+RUN	apk add --no-cache nginx
 RUN apk add openssl
 RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz && \
 	tar -C . -xzf telegraf-1.14.0-static_linux_amd64.tar.gz && \
@@ -21,12 +21,10 @@ RUN mv localhost.dev.crt etc/ssl/certs/
 RUN mv localhost.dev.key etc/ssl/private/
 RUN chmod 600 etc/ssl/certs/localhost.dev.crt etc/ssl/private/localhost.dev.key
 
-#index.html 역할은? => 그 페이지
-#절대경로 /srcs => dockerfile 기준
+COPY /srcs/run.sh /
 COPY /srcs/nginx.conf /etc/nginx/nginx.conf
 COPY /srcs/index.html /www/index.html
 COPY /srcs/telegraf.conf /etc/telegraf
-COPY /srcs/run.sh /
 
 EXPOSE 80 443
 

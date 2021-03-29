@@ -13,9 +13,8 @@ spec:
 
 ---
 apiVersion: v1
-kind: PersistentVolume      #이게뭐여???? => PV, PVC
-                            # PVC 를 만들면 mysql은 PV 를 자동으로 만듦
-metadata:
+kind: PersistentVolume      # PV, PVC
+metadata:                   # PVC 를 만들면 mysql은 PV 를 자동으로 만듦
   name: influxdb-pv
 spec:
   storageClassName: standard
@@ -35,7 +34,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: influxdb-pvc
-  labels:        #label을 통해서 색인할 수 있다
+  labels:
     app: influxdb-pvc
 spec:
   storageClassName: standard

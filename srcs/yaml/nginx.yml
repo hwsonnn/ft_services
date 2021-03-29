@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  annotations:          #shared! 어떤 shared 더라..db 빼고 다? => ㅇㅇ
+  annotations:
     metallb.universe.tf/allow-shared-ip: shared
   labels:
     app: nginx
@@ -24,21 +24,21 @@ kind: Deployment
 metadata:
   name: nginx-deployment
   labels:
-    app: nginx      #라벨 => 색인
+    app: nginx
 spec:
   replicas: 1
-  selector:         #selector 라는게 ??
+  selector:
     matchLabels:
-      app: nginx    #tier 은 없어도됨 ? => ㅇㅇ
+      app: nginx
   template:
     metadata:
       labels:
         app: nginx
-    spec:             #얘가 파드 말하는거 맞음? => ㅇㅇ
+    spec:
       containers:
-        - name: nginx   #저 위에 app: nginx 라벨이랑 다른거??
-          image: nginx-image  #도커빌드한거 !
-          imagePullPolicy: Never  #?? => github 금지한거
+        - name: nginx
+          image: nginx-image
+          imagePullPolicy: Never  # github 금지
           ports:
             - containerPort: 80
             - containerPort: 443
