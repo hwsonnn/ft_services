@@ -25,31 +25,31 @@ spec:
       name: passive1
       targetPort: 31112
       protocol: TCP
-  selector: # Select POD based on the POD's LABELS
-    app: ftps # Select ftps POD
+  selector:
+    app: ftps
 
 
 ---  
 apiVersion: apps/v1
 kind: Deployment
-metadata: # metadata describes the deployment itself.
-  name: ftps-deployment # deployment's name. Pods is named based on this.
-  labels: # Deployment's label
+metadata:
+  name: ftps-deployment 
+  labels:
     app: ftps
-spec: # Set Deployment
+spec: 
   replicas: 1
   selector:
-    matchLabels: # Control pods which have this label
+    matchLabels: 
       app: ftps
-  template: # POD!!
+  template: 
     metadata:
       labels:
-        app: ftps # Pod's app label is ftps
-    spec: # CONTAINER!!
-      containers: # container set
-        - name: ftps # container's name
-          image: ftps-image # Select docker image
-          imagePullPolicy: Never # Using local image.
+        app: ftps 
+    spec: 
+      containers: 
+        - name: ftps 
+          image: ftps-image 
+          imagePullPolicy: Never
           ports:
             - containerPort: 20
               hostPort: 20

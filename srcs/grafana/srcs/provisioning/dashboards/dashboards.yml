@@ -5,6 +5,10 @@ providers:
   folder: ''
   type: file
   disableDeletion: true
-  updateIntervalSeconds: 10 #how often Grafana will scan for changed dashboards
+  updateIntervalSeconds: 10
   options:
     path: /var/lib/grafana/dashboards
+
+# grafana는 시작할 때 influxdb.yaml 을 보고 
+# DB를 연동시킨 다음에 influxdb.yaml이 가르쳐주는 위치로 가서 
+# json 형태로 만들어져 있는 dashboards를 찾고 시각화시킨다.
