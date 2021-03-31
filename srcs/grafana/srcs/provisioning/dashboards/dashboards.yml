@@ -1,12 +1,12 @@
 apiVersion: 1
-providers:
+providers: 
 - name: 'dashboards'
   orgId: 1
   folder: ''
   type: file
   disableDeletion: true
   updateIntervalSeconds: 10
-  options:
+  options: 
     path: /var/lib/grafana/dashboards
 
 # grafana는 시작할 때 influxdb.yaml 을 보고 (i.e. datasources 경로 안 yml 파일) 
