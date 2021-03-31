@@ -34,15 +34,15 @@ docker build -qt grafana-image ./srcs/grafana
 echo "ftps..."
 docker build -qt ftps-image ./srcs/ftps
 
+# 로드밸런서에 external IP 부여
+kubectl apply -f ./srcs/ConfigMap.yml
+
 # 오브젝트 생성
 echo "오브젝트를 생성합니다..."
 kubectl apply -f ./srcs/yaml/nginx.yml
-kubectl apply -f ./srcs/yaml/mySql.yml
+kubectl apply -f ./srcs/yaml/mysql.yml
 kubectl apply -f ./srcs/yaml/phpMyAdmin.yml
 kubectl apply -f ./srcs/yaml/wordpress.yml
 kubectl apply -f ./srcs/yaml/influxdb.yml
 kubectl apply -f ./srcs/yaml/grafana.yml
 kubectl apply -f ./srcs/yaml/ftps.yml
-
-# 로드밸런서에 external IP 부여
-kubectl apply -f ./srcs/ConfigMap.yml

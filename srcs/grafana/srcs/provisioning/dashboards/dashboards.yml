@@ -9,6 +9,6 @@ providers:
   options:
     path: /var/lib/grafana/dashboards
 
-# grafana는 시작할 때 influxdb.yaml 을 보고 
-# DB를 연동시킨 다음에 influxdb.yaml이 가르쳐주는 위치로 가서 
+# grafana는 시작할 때 influxdb.yaml 을 보고 (i.e. datasources 경로 안 yml 파일) 
+# DB를 연동시킨 다음에 dashboard.yaml이 가르쳐주는 위치로 가서 
 # json 형태로 만들어져 있는 dashboards를 찾고 시각화시킨다.

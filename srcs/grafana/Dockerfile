@@ -10,11 +10,11 @@ RUN     wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_
         rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
         mkdir -p /etc/telegraf
 
-COPY    srcs/run.sh /
-COPY    srcs/dashboards /var/lib/grafana/dashboards/
-COPY    srcs/provisioning/dashboards/dashboards.yml /usr/share/grafana/conf/provisioning/dashboards/
-COPY    srcs/provisioning/datasources/influxdb.yml /usr/share/grafana/conf/provisioning/datasources/
-COPY    srcs/telegraf.conf /etc/telegraf
+COPY    /srcs/run.sh /
+COPY    /srcs/dashboards /var/lib/grafana/dashboards/
+COPY    /srcs/provisioning/dashboards/dashboards.yml /usr/share/grafana/conf/provisioning/dashboards/
+COPY    /srcs/provisioning/datasources/influxdb.yml /usr/share/grafana/conf/provisioning/datasources/
+COPY    /srcs/telegraf.conf /etc/telegraf
 
 EXPOSE  3000
 

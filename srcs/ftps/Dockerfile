@@ -9,10 +9,10 @@ RUN     wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_
         rm -rf telegraf-1.14.0-static_linux_amd64.tar.gz telegraf/ && \
         mkdir -p /etc/telegraf
 
-COPY    srcs/run.sh /
-COPY    srcs/telegraf.conf /etc/telegraf
-COPY    srcs/openssl.conf /etc/ssl/private/
-COPY    srcs/vsftpd.conf /etc/vsftpd/vsftpd.conf
+COPY    /srcs/run.sh /
+COPY    /srcs/telegraf.conf /etc/telegraf
+COPY    /srcs/openssl.conf /etc/ssl/private/
+COPY    /srcs/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-EXPOSE 20 21 31111 31112
-CMD ["sh", "run.sh"]
+EXPOSE  20 21 31111 31112
+CMD     ["sh", "run.sh"]

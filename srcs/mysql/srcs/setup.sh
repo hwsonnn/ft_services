@@ -6,11 +6,10 @@
 # /etc/init.d/mariadb start 를 경로를 알아서 찾아서 실행해주는 명령어가 rc-service 인 듯
 # rc-service 명령을 실행하기 위해 openrc를 설치하고 실행해줘야 함
 openrc
-# 아래 파일을 만들어 줘야 rc-service mariadb " "가 실행이 된다.
+# 그리고 아래 파일을 만들어 줘야 rc-service mariadb command가 실행이 된다.
 touch /run/openrc/softlevel
 
 /usr/bin/mysql_install_db
-# rc-service mariadb setup
 rc-service mariadb start
 
 echo "CREATE DATABASE wordpress;" | mysql -u root

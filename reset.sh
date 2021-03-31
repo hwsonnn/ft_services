@@ -14,7 +14,6 @@ docker rmi nginx-image
 docker build ./srcs/nginx/ -t nginx-image
 kubectl apply -f ./srcs/yaml/nginx.yml
 
-
 #wordpress
 kubectl delete -f ./srcs/yaml/wordpress.yml
 eval $(minikube docker-env)
@@ -40,13 +39,12 @@ docker build ./srcs/influxdb/ -t influxdb-image
 kubectl apply -f ./srcs/yaml/influxdb.yml
 
 #mysql
-kubectl delete -f ./srcs/yaml/mySql.yml
+kubectl delete -f ./srcs/yaml/mysql.yml
 eval $(minikube docker-env)
 docker rmi mysql-image
 
 docker build ./srcs/mysql/ -t mysql-image
-kubectl apply -f ./srcs/yaml/mySql.yml
-#k exec influxdb-deployment -- pkill influxd
+kubectl apply -f ./srcs/yaml/mysql.yml
 
 #phpmyadmin
 kubectl delete -f ./srcs/yaml/phpMyAdmin.yml
@@ -55,6 +53,8 @@ docker rmi phpmyadmin-image
 
 docker build ./srcs/phpmyadmin/ -t phpmyadmin-image
 kubectl apply -f ./srcs/yaml/phpMyAdmin.yml
+
+
 
 #ftp 파일 전송 보여주기
 curl ftp://192.168.99.30:21 --ssl -k --user hson -T reset.sh
